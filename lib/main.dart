@@ -10,34 +10,20 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
-  final AuthService authService = AuthService();
-  final String? token = await authService.getToken();
-
   runApp(ChangeNotifierProvider(
-      create: (context) => TokenProvider(),
-      child: MyApp(
-        initialRoute: token == null ? Routes.LOGIN : Routes.HOME,
-      )));
-}
-
-class MyApp extends StatelessWidget {
-  final String initialRoute;
-  MyApp({required this.initialRoute});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    create: (context) => TokenProvider(),
+    child: MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'My App',
+      home: Consumer<TokenProvider>(
+        builder: (context, tokenService, child) {
+          return tokenService.token != null ? Home() : Login();
+        },
       ),
-      initialRoute: initialRoute,
       routes: {
         Routes.HOME: (context) => Home(),
         Routes.LOGIN: (context) => Login()
       },
-    );
-  }
+    ),
+  ));
 }

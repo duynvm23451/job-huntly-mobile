@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:job_huntly_mobile/constant/routes.dart';
 import 'package:job_huntly_mobile/provider/token_provider.dart';
 import 'package:job_huntly_mobile/service/auth_service.dart';
@@ -39,26 +40,29 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Login page"),
-      ),
-      body: Container(
-        width: double.infinity,
-        child: Column(
-          children: [
-            TextField(
-              controller: _emailController,
-            ),
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-            ),
-            ElevatedButton(onPressed: _login, child: Text("Đăng nhập")),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text("To Home"),
-            ),
-          ],
+      body: SafeArea(
+        child: Container(
+          width: double.infinity,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 12,
+              ),
+              SvgPicture.asset("assets/images/logo.svg"),
+              TextField(
+                controller: _emailController,
+              ),
+              TextField(
+                controller: _passwordController,
+                obscureText: true,
+              ),
+              ElevatedButton(onPressed: _login, child: Text("Đăng nhập")),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text("To Home"),
+              ),
+            ],
+          ),
         ),
       ),
     );
