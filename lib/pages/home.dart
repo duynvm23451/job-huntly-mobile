@@ -25,6 +25,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final tokenProvider = Provider.of<TokenProvider>(context);
     String? token = tokenProvider.token;
+    print("DDDDDDDDDDDDDDDDDDD");
     return Scaffold(
       appBar: AppBar(
         title: Text("Home page"),
