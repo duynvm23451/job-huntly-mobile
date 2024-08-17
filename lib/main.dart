@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:job_huntly_mobile/constant/colors_constant.dart';
 import 'package:job_huntly_mobile/constant/routes.dart';
 import 'package:job_huntly_mobile/pages/home.dart';
 import 'package:job_huntly_mobile/pages/login.dart';
@@ -15,6 +16,7 @@ void main() async {
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'My App',
+      theme: ThemeData(scaffoldBackgroundColor: ColorsConstant.customNeutral),
       home: Consumer<TokenProvider>(
         builder: (context, tokenService, child) {
           return tokenService.token != null ? Home() : Login();
