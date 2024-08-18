@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
             ElevatedButton(
               onPressed: () async {
                 tokenProvider.clearToken();
-                Navigator.of(context).pushReplacementNamed(Routes.LOGIN);
+                Navigator.of(context).pushReplacementNamed(Routes.LOG_IN);
               },
               child: Text("Đăng xuất"),
             ),

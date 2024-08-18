@@ -250,7 +250,8 @@ class _LoginState extends State<Login> {
                       Text("Không có tài khoản, "),
                       InkWell(
                         onTap: () {
-                          print("Duy");
+                          Navigator.of(context)
+                              .pushReplacementNamed(Routes.SIGN_UP);
                         },
                         child: Text(
                           "Đăng kí",
