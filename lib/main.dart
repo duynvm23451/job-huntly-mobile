@@ -4,6 +4,7 @@ import 'package:job_huntly_mobile/constant/colors_constant.dart';
 import 'package:job_huntly_mobile/constant/routes.dart';
 import 'package:job_huntly_mobile/pages/home.dart';
 import 'package:job_huntly_mobile/pages/login.dart';
+import 'package:job_huntly_mobile/pages/signup.dart';
 import 'package:job_huntly_mobile/provider/token_provider.dart';
 import 'package:job_huntly_mobile/service/auth_service.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,8 @@ void main() async {
       ),
       routes: {
         Routes.HOME: (context) => Home(),
-        Routes.LOGIN: (context) => Login()
+        Routes.LOG_IN: (context) => Login(),
+        Routes.SIGN_UP: (context) => Signup(),
       },
     ),
   ));
