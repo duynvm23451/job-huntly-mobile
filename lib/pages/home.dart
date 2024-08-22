@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:job_huntly_mobile/constant/routes.dart';
 import 'package:job_huntly_mobile/provider/token_provider.dart';
+import 'package:job_huntly_mobile/provider/user_provider.dart';
 import 'package:job_huntly_mobile/service/auth_service.dart';
+import 'package:job_huntly_mobile/service/user_serivce.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -26,24 +28,27 @@ class _HomeState extends State<Home> {
     final tokenProvider = Provider.of<TokenProvider>(context);
     String? token = tokenProvider.token;
     print("DDDDDDDDDDDDDDDDDDD");
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Home page"),
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            Text(
-              "Duy $token",
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                tokenProvider.clearToken();
-                Navigator.of(context).pushReplacementNamed(Routes.LOG_IN);
-              },
-              child: Text("Đăng xuất"),
-            ),
-          ],
+    return ChangeNotifierProvider(
+      create: (context) => UserProvider(),
+      child: Scaffold(
+        body: Consumer<UserProvider>(
+          builder: (context, userService, child) {
+            print(userService.user?.data.toString());
+            if (userService.user?.data?.role == "EMPLOYEE") {
+              return Center(
+                child: Text("Employee"),
+              );
+            }
+            if (userService.user?.data?.role == "RECRUITER") {
+              return Center(
+                child: Text("Recruiter"),
+              );
+            } else {
+              return Center(
+                child: Text("ERROR"),
+              );
+            }
+          },
         ),
       ),
     );

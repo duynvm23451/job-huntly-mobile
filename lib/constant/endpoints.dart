@@ -7,4 +7,6 @@ class EndPoints {
   static String get loginUrl => '$baseUrl/auth/login';
 
   static String get signInUrl => '$baseUrl/signin';
+
+  static String get getMyInfo => '$baseUrl/getMyInfo';
 }

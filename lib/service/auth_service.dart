@@ -12,12 +12,17 @@ class AuthService {
     final response = await http.post(url,
         headers: {'Content-Type': 'application/json'},
         body: json.encode({"email": email, "password": password}));
+    final Map<String, dynamic> responseData =
+        json.decode(utf8.decode(response.bodyBytes));
     if (response.statusCode == 200) {
-      final Map<String, dynamic> responseData = json.decode(response.body);
       await _storage.write(key: "token", value: responseData["data"]["token"]);
       return responseData;
     } else {
-      throw Exception("Failed to login");
+      String message = responseData["message"];
+      List<int> encodedMessage = utf8.encode(message);
+      String decodedMessage = utf8.decode(encodedMessage);
+
+      throw decodedMessage;
     }
   }
 
