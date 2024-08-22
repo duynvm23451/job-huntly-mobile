@@ -17,7 +17,6 @@ class TokenProvider with ChangeNotifier {
       _token = await _authService.getToken();
       notifyListeners();
     } catch (e) {
-      print('Login error: $e');
       throw e;
     }
   }

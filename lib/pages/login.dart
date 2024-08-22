@@ -4,6 +4,7 @@ import 'package:job_huntly_mobile/constant/colors_constant.dart';
 import 'package:job_huntly_mobile/constant/routes.dart';
 import 'package:job_huntly_mobile/provider/token_provider.dart';
 import 'package:job_huntly_mobile/service/auth_service.dart';
+import 'package:job_huntly_mobile/utils/toast.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
@@ -20,7 +21,7 @@ class _LoginState extends State<Login> {
   bool _isLoading = false;
   bool _isEmployee = true;
 
-  void _login() async {
+  void _login(BuildContext context) async {
     setState(() {
       _isLoading = true;
     });
@@ -31,7 +32,7 @@ class _LoginState extends State<Login> {
           _emailController.text, _passwordController.text);
       Navigator.of(context).pushReplacementNamed(Routes.HOME);
     } catch (error) {
-      print('Error: $error');
+      showSnackbar(context, error.toString(), true);
     }
 
     setState(() {
@@ -136,29 +137,7 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: 16,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 1,
-                        color: Colors.grey.shade300,
-                      ),
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      "Hoặc đăng nhập bằng email",
-                      style: TextStyle(color: Colors.grey.shade600),
-                    ),
-                    SizedBox(width: 8),
-                    Expanded(
-                      child: Container(
-                        height: 1,
-                        color: Colors.grey.shade300,
-                      ),
-                    ),
-                  ],
-                ),
+                middleText(),
                 SizedBox(
                   height: 56,
                 ),
@@ -226,7 +205,7 @@ class _LoginState extends State<Login> {
                 Container(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: _login,
+                      onPressed: () => _login(context),
                       child: Text(
                         "Đăng nhập",
                         style: TextStyle(color: Colors.white),
@@ -268,6 +247,32 @@ class _LoginState extends State<Login> {
           ),
         ),
       ),
+    );
+  }
+
+  Row middleText() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+          child: Container(
+            height: 1,
+            color: Colors.grey.shade300,
+          ),
+        ),
+        SizedBox(width: 8),
+        Text(
+          "Hoặc đăng nhập bằng email",
+          style: TextStyle(color: Colors.grey.shade600),
+        ),
+        SizedBox(width: 8),
+        Expanded(
+          child: Container(
+            height: 1,
+            color: Colors.grey.shade300,
+          ),
+        ),
+      ],
     );
   }
 }
