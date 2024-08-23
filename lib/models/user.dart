@@ -29,18 +29,18 @@ class Data {
   int? id;
   String? username;
   String? email;
-  Null? avatarFileName;
-  Null? coverFileName;
-  Null? resumeFileName;
-  Null? aboutMe;
+  String? avatarFileName;
+  String? coverFileName;
+  String? resumeFileName;
+  String? aboutMe;
   String? fullName;
   String? role;
-  Null? dateOfBirth;
-  Null? phoneNumber;
-  Null? gender;
-  Null? typeNotificationAccept;
-  Null? address;
-  Null? company;
+  String? dateOfBirth;
+  String? phoneNumber;
+  String? gender;
+  String? typeNotificationAccept;
+  String? address;
+  Company? company;
 
   Data(
       {this.id,
@@ -74,7 +74,8 @@ class Data {
     gender = json['gender'];
     typeNotificationAccept = json['typeNotificationAccept'];
     address = json['address'];
-    company = json['company'];
+    company =
+        json['company'] != null ? new Company.fromJson(json['company']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -93,7 +94,72 @@ class Data {
     data['gender'] = this.gender;
     data['typeNotificationAccept'] = this.typeNotificationAccept;
     data['address'] = this.address;
-    data['company'] = this.company;
+    if (this.company != null) {
+      data['company'] = this.company!.toJson();
+    }
+    return data;
+  }
+}
+
+class Company {
+  int? id;
+  String? name;
+  String? description;
+  Null? logo;
+  Null? availableJobs;
+  List<Industries>? industries;
+
+  Company(
+      {this.id,
+      this.name,
+      this.description,
+      this.logo,
+      this.availableJobs,
+      this.industries});
+
+  Company.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    description = json['description'];
+    logo = json['logo'];
+    availableJobs = json['availableJobs'];
+    if (json['industries'] != null) {
+      industries = <Industries>[];
+      json['industries'].forEach((v) {
+        industries!.add(new Industries.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['description'] = this.description;
+    data['logo'] = this.logo;
+    data['availableJobs'] = this.availableJobs;
+    if (this.industries != null) {
+      data['industries'] = this.industries!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Industries {
+  int? id;
+  String? name;
+
+  Industries({this.id, this.name});
+
+  Industries.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
     return data;
   }
 }
