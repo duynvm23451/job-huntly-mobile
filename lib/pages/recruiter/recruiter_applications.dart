@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:job_huntly_mobile/components/recruiter_drawer.dart';
 import 'package:job_huntly_mobile/constant/colors_constant.dart';
 import 'package:job_huntly_mobile/constant/routes.dart';
-import 'package:job_huntly_mobile/provider/token_provider.dart';
-import 'package:provider/provider.dart';
 
-class RecruiterDashBoard extends StatelessWidget {
-  const RecruiterDashBoard({super.key});
+class RecruiterApplications extends StatelessWidget {
+  const RecruiterApplications({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final tokenProvider = Provider.of<TokenProvider>(context);
-    final currentRoute = Routes.HOME;
-
+    final currentRoute = Routes.RECRUITER_APPLICATIONS;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorsConstant.customNeutral,
@@ -24,12 +19,6 @@ class RecruiterDashBoard extends StatelessWidget {
         child: Column(
           children: [
             Text("Recruiter"),
-            ElevatedButton(
-                onPressed: () {
-                  tokenProvider.clearToken();
-                  Navigator.of(context).pushReplacementNamed(Routes.LOG_IN);
-                },
-                child: Text("Dang xuat"))
           ],
         ),
       ),
