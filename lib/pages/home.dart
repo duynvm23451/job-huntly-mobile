@@ -21,7 +21,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final tokenProvider = Provider.of<TokenProvider>(context);
+    final currentRoute = ModalRoute.of(context)?.settings.name;
+    print("Duy Route: $currentRoute");
     return ChangeNotifierProvider(
       create: (context) => UserProvider(),
       child: Consumer<UserProvider>(
@@ -33,16 +34,15 @@ class _HomeState extends State<Home> {
           }
           if (userService.user?.data?.role == "RECRUITER") {
             return RecruiterDashBoard();
-          } else {
-            return Center(
-                child: ElevatedButton(
-              onPressed: () {
-                tokenProvider.clearToken();
-                Navigator.of(context).pushReplacementNamed(Routes.LOG_IN);
-              },
-              child: Text("Dang xuat"),
-            ));
           }
+          return Center(
+              child: ElevatedButton(
+            onPressed: () {
+              tokenProvider.clearToken();
+              Navigator.of(context).pushReplacementNamed(Routes.LOG_IN);
+            },
+            child: Text("Dang xuat"),
+          ));
         },
       ),
     );

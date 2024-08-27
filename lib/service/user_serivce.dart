@@ -15,11 +15,7 @@ class UserSerivce {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $token'
     });
-    print("duyabc" + (response.statusCode == 200).toString());
     if (response.statusCode == 200) {
-      print("duyabcININNEWS" +
-          User.fromJson(jsonDecode(response.body)).toString());
-
       return User.fromJson(jsonDecode(response.body));
     } else {
       throw Exception("Failed to load user");
