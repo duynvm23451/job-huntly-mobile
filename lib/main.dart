@@ -3,6 +3,11 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:job_huntly_mobile/constant/colors_constant.dart';
 import 'package:job_huntly_mobile/constant/routes.dart';
 import 'package:job_huntly_mobile/pages/chat_room_detail.dart';
+import 'package:job_huntly_mobile/pages/employee/employee_applications.dart';
+import 'package:job_huntly_mobile/pages/employee/employee_chat_rooms.dart';
+import 'package:job_huntly_mobile/pages/employee/employee_companies.dart';
+import 'package:job_huntly_mobile/pages/employee/employee_jobs.dart';
+import 'package:job_huntly_mobile/pages/employee/employee_settings.dart';
 import 'package:job_huntly_mobile/pages/recruiter/recruiter_applications.dart';
 import 'package:job_huntly_mobile/pages/recruiter/recruiter_chat_rooms.dart';
 import 'package:job_huntly_mobile/pages/home.dart';
@@ -63,6 +68,27 @@ void main() async {
 
         if (uri.path == Routes.RECRUITER_SETTINGS) {
           return MaterialPageRoute(builder: (context) => RecruiterSettings());
+        }
+
+        if (uri.path == Routes.EMPLOYEE_MESSAGES) {
+          return MaterialPageRoute(builder: (context) => EmployeeChatRooms());
+        }
+
+        if (uri.path == Routes.EMPLOYEE_APPLICATIONS) {
+          return MaterialPageRoute(
+              builder: (context) => EmployeeApplications());
+        }
+
+        if (uri.path == Routes.EMPLOYEE_JOBS) {
+          return MaterialPageRoute(builder: (context) => EmployeeJobs());
+        }
+
+        if (uri.path == Routes.EMPLOYEE_COMPANIES) {
+          return MaterialPageRoute(builder: (context) => EmployeeCompanies());
+        }
+
+        if (uri.path == Routes.EMPLOYEE_SETTINGS) {
+          return MaterialPageRoute(builder: (context) => EmployeeSettings());
         }
 
         if (uri.pathSegments.length == 2 &&

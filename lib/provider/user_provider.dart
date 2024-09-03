@@ -8,7 +8,9 @@ class UserProvider with ChangeNotifier {
   User? _user;
 
   UserProvider() {
-    getLoggedInUserInfo();
+    if (_user == null) {
+      getLoggedInUserInfo();
+    }
   }
 
   User? get user => _user;

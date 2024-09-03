@@ -9,4 +9,8 @@ class EndPoints {
   static String get signInUrl => '$baseUrl/signin';
 
   static String get getMyInfo => '$baseUrl/getMyInfo';
+
+  static String get countApplications => '$baseUrl/applications/count/';
+
+  static String get getApplications => '$baseUrl/applications';
 }

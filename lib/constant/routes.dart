@@ -9,7 +9,7 @@ class Routes {
   static const RECRUITER_JOBS = "recruiter/jobs";
   static const EMPLOYEE_JOBS = "employee/jobs";
   static const RECRUITER_APPLICATIONS = "recruiter/applications";
-  static const EMPLOYEE_APPLICATIONS = "employee/jobs";
+  static const EMPLOYEE_APPLICATIONS = "employee/applications";
   static const RECRUITER_SETTINGS = "recruiter/settings";
   static const EMPLOYEE_SETTINGS = "employee/settings";
 }
